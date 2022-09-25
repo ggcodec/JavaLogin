@@ -1,0 +1,53 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    username: root
+    password: a@199862
+    url: jdbc:mysql://haotchen.top:36000/yeb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      # 最大连接数
+      maximum-pool-size: 10
+      # 连接池名称
+      pool-name: DateHikarCp
+      # 空闲链接最大时间
+      idle-timeout: 180000
+      # 从连接池返回的自动提交
+      auto-commit: true
+      # 链接超时时间
+      connection-timeout: 30000
+      # 测试链接是否可用
+      connection-test-query: SELECT 1
+      # 链接最大存活时间,0表示永久,这里设置30分钟
+      max-lifetime: 1800000
+
+
+mybatis-plus:
+  # 配置Mapper映射文件
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  # 配置Mybatis数据返回类型别名
+  type-aliases-package: com.haotchen.server.pojo
+
+  configuration:
+    # 自动驼峰命名
+    map-underscore-to-camel-case: false
+
+
+logging:
+  level:
+    com.haotchen: debug
+
+
+# jwt 配置
+jwt:
+  # JWT存储请求头
+  tokenHeader: Authorization
+  # JWT 加密使用机制
+  secret: yeb-secret
+  # JWT 超时时间
+  expiration: 604800
+  # JWT 负载中拿到开头
+  tokenHead: Bearer
+
